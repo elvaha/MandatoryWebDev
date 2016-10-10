@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Web.Models
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the css class "current".
+*@
+@{
+    var loginStatusModel = Members.GetCurrentLoginStatus();
+}
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        @{ var selection = CurrentPage.Site().Children.Where("Visible"); }
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                @foreach (var item in selection)
+            {
+                if (item.Name == "Projects")
+                {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Projects<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach (var child in item.Children.Where("Visible"))
+                                {
+                                    <li><a href="#">@child.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    <li class="@(item.IsAncestorOrSelf(CurrentPage) ? "current" : null)">
+                        <a href="@item.Url">@item.Name</a>
+                    </li>
+                }
+                @if (loginStatusModel.IsLoggedIn)
+                {
+                    <li>
+                        @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
+                        {
+                            <a href="">Logout</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
