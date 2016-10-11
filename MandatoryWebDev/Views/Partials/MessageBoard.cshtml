@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@{ var selection = CurrentPage.Children.Where("Visible").OrderBy("CreateDate desc"); }
+@* OrderBy() takes the property to sort by and optionally order desc/asc *@
+
+<ul class="list-group">
+    @foreach (var item in selection)
+    {
+        <li class="list-group-item msg-item>
+			<h3>@item.title</h3>
+			<p>@item.publisher</p>
+			<p class="date-shower">@item.date</p>
+			<p>@item.messsage</p>	
+		</li>
+    }
+</ul>

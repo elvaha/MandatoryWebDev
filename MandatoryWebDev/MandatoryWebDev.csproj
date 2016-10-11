@@ -3156,6 +3156,9 @@
     <Content Include="Views\AboutPage.cshtml" />
     <Content Include="Views\ContactPage.cshtml" />
     <Content Include="Views\Partials\MessageForm.cshtml" />
+    <Content Include="Views\BoardMessage.cshtml" />
+    <Content Include="Views\Login.cshtml" />
+    <Content Include="Views\Partials\MessageBoard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
