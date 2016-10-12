@@ -11,36 +11,42 @@
 @{
     var loginStatusModel = Members.GetCurrentLoginStatus();
 }
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="#">Aarhus Web Dev</a>
         </div>
-        @{ var selection = CurrentPage.Site().Children.Where("Visible"); }
+        @{ var selection = CurrentPage.Site().Children.Where("Visible");
+        }
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 @foreach (var item in selection)
-            {
-                if (item.Name == "Projects")
                 {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                Projects<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach (var child in item.Children.Where("Visible"))
-                                {
-                                    <li><a href="#">@child.Name</a></li>
-                                }
-                            </ul>
-                        </li>
-                    }
-
                     <li class="@(item.IsAncestorOrSelf(CurrentPage) ? "current" : null)">
                         <a href="@item.Url">@item.Name</a>
                     </li>
                 }
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @{ var projects = CurrentPage.Site().Children("projectMain");
+                        }
+                        @foreach (var page in projects)
+                        {
+                            foreach (var item in page.Children.Where("Visible"))
+                            {
+                                <li>
+                                    <a href="@item.Url">@item.Name</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
                 @if (loginStatusModel.IsLoggedIn)
                 {
                     <li>
@@ -48,6 +54,12 @@
                         {
                             <a href="">Logout</a>
                         }
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="/login/">Login</a>
                     </li>
                 }
             </ul>

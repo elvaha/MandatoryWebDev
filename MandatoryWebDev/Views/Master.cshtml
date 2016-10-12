@@ -11,7 +11,7 @@
 <html>
 <head>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/Style/Style.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -19,14 +19,14 @@
         @Html.Partial("MainNavi")
     </header>
 
-    <main class="col-lg-10 col-lg-offset-1">
+    <main>
         @RenderBody()
     </main>
 
     <footer>
        @* @Umbraco.Field("footer", recursive: true)*@
     </footer>
-    <script src="~/scripts/jquery-3.1.0.min.js"></script>
+    <script src="~/scripts/jquery-3.1.1.min.js"></script>
     <script src="~/scripts/bootstrap.min.js"></script>
 </body>
 </html>

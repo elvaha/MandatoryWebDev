@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "278c240ee56a1c0c")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.4")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e70ed8b90b8b2524")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -112,7 +112,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// frontpageText
+		/// SiteDescription
 		///</summary>
 		[ImplementPropertyType("frontpageText")]
 		public IHtmlString FrontpageText
@@ -121,7 +121,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Header
+		/// Header1
 		///</summary>
 		[ImplementPropertyType("header")]
 		public string Header
@@ -136,6 +136,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public string Logo
 		{
 			get { return this.GetPropertyValue<string>("logo"); }
+		}
+
+		///<summary>
+		/// quote1
+		///</summary>
+		[ImplementPropertyType("quote1")]
+		public IHtmlString Quote1
+		{
+			get { return this.GetPropertyValue<IHtmlString>("quote1"); }
+		}
+
+		///<summary>
+		/// quote2
+		///</summary>
+		[ImplementPropertyType("quote2")]
+		public IHtmlString Quote2
+		{
+			get { return this.GetPropertyValue<IHtmlString>("quote2"); }
 		}
 	}
 
@@ -427,6 +445,103 @@ namespace Umbraco.Web.PublishedContentModels
 		public Newtonsoft.Json.Linq.JToken AboutGrid
 		{
 			get { return this.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("aboutGrid"); }
+		}
+	}
+
+	/// <summary>BoardMessage</summary>
+	[PublishedContentModel("boardMessage")]
+	public partial class BoardMessage : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "boardMessage";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public BoardMessage(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<BoardMessage, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Date
+		///</summary>
+		[ImplementPropertyType("date")]
+		public DateTime Date
+		{
+			get { return this.GetPropertyValue<DateTime>("date"); }
+		}
+
+		///<summary>
+		/// content
+		///</summary>
+		[ImplementPropertyType("message")]
+		public string Message
+		{
+			get { return this.GetPropertyValue<string>("message"); }
+		}
+
+		///<summary>
+		/// publisher
+		///</summary>
+		[ImplementPropertyType("publisher")]
+		public string Publisher
+		{
+			get { return this.GetPropertyValue<string>("publisher"); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return this.GetPropertyValue<string>("title"); }
+		}
+	}
+
+	/// <summary>MessageBoard</summary>
+	[PublishedContentModel("boardMessages")]
+	public partial class BoardMessages : Master
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "boardMessages";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public BoardMessages(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<BoardMessages, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return this.GetPropertyValue<string>("title"); }
 		}
 	}
 
