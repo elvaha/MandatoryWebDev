@@ -9,6 +9,33 @@
 .color-grey{background-color: darkgray}
 
 
+article{
+    background-color: whitesmoke;
+}
+
+.viewScreen{
+    background-color: whitesmoke;
+    min-height: 100%;
+}
+
+main{
+    min-height: 100%;
+}
+
+.list-group .list-group-item{
+    margin-top: 10px;
+}
+
+.list-group .list-group-item:hover{
+    background-color: #7CB9E8;
+}
+
+
+.article-item:hover{
+
+}
+
+
 
 .section-primary{
     min-height: 100%;

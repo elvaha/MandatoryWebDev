@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Umbraco.Core.Models;
 using Umbraco.Web.Mvc;
 
 namespace MandatoryWebDev.Controllers
@@ -19,14 +20,15 @@ namespace MandatoryWebDev.Controllers
         [HttpPost]
         public ActionResult HandleFormSubmit(ContactFormModelView model)
         {
-            if (!ModelState.IsValid)
-            {
-                return CurrentUmbracoPage();
-            }
-            else
-            {
-                return RedirectToCurrentUmbracoPage();
-            }
+            IContent contactForm = Services.ContentService.CreateContent(model.Name, CurrentPage.Id, "ContactForm");
+
+            contactForm.SetValue("name", model.Name);
+            contactForm.SetValue("email", model.Email);
+            contactForm.SetValue("subject", model.Subject);
+            contactForm.SetValue("message", model.Messsage);
+
+            Services.ContentService.SaveAndPublishWithStatus(contactForm);
+            return RedirectToCurrentUmbracoPage();
         }
     }
 }

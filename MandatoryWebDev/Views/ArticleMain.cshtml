@@ -3,7 +3,10 @@
 	Layout = "Master.cshtml";
 }
 
-@Umbraco.Field("articlesHeader")
-@Umbraco.Field("articlesText")
-
-@Html.Partial("ChildList")
+<div class="viewScreen col-md-12">
+    <div class="col-md-10 col-md-offset-1">
+        <h2>@Umbraco.Field("articlesHeader")</h2>
+        <p>@Umbraco.Field("articlesText")</p>
+        @Html.Partial("ChildList")
+    </div>
+</div>

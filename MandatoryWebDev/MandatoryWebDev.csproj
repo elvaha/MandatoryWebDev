@@ -492,6 +492,11 @@
     <Content Include="default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Media\1001\angular-2-features.png" />
+    <Content Include="Media\1001\angular-2-features_thumb.jpg" />
+    <Content Include="Media\1001\angular-2-features_thumb.png" />
+    <Content Include="Media\1003\person2.jpg" />
+    <Content Include="Media\1004\person.jpg" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2976,6 +2981,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ContactFormSurfaceController.cs" />
+    <Compile Include="Controllers\LoginSurfaceController.cs" />
     <Compile Include="Controllers\MessageFormSurfaceController.cs" />
     <Compile Include="Models\ContactFormModelView.cs" />
     <Compile Include="Models\MessageFormModelView.cs" />
@@ -3160,6 +3166,10 @@
     <Content Include="Views\BoardMessage.cshtml" />
     <Content Include="Views\Login.cshtml" />
     <Content Include="Views\Partials\MessageBoard.cshtml" />
+    <Content Include="Views\MemberView.cshtml" />
+    <Content Include="Views\MessageBoard.cshtml" />
+    <Content Include="Views\Partials\MemberList.cshtml" />
+    <Content Include="Views\ForbiddenAcces.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3169,7 +3179,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Media\1002\" />
     <Folder Include="Views\ContactFormSurface\" />
+    <Folder Include="Views\LoginSuface\" />
     <Folder Include="Views\MacroPartials\" />
     <Folder Include="Views\MessageFormSurface\" />
   </ItemGroup>

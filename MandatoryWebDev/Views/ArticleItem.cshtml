@@ -3,6 +3,7 @@
 	Layout = "Master.cshtml";
 }
 
-@Umbraco.Field("articleHeader")
-@Umbraco.Field("articlePicture")
-@Umbraco.Field("articleMainText")
+<article class="col-md-10 col-md-offset-1">
+    <h2>@Umbraco.Field("articleHeader")</h2>
+    @Umbraco.Field("articleMainText")
+</article>

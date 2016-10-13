@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="viewScreen col-md-12">
+    <div class="col-md-10 col-md-offset-1 text-center">
+        <h2 class="text-danger">@Umbraco.Field("textPageHeader")</h2>
+        <h4>@Umbraco.Field("textPageMain")</h4>
+    </div>
+</div>

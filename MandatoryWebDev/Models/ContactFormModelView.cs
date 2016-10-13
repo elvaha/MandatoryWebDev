@@ -18,6 +18,5 @@ namespace MandatoryWebDev.Models
         public string Email { get; set; }
         [Required]
         public string Messsage { get; set; }
-
     }
 }

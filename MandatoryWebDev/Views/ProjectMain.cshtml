@@ -2,3 +2,11 @@
 @{
 	Layout = "Master.cshtml";
 }
+
+<div class="viewScreen col-md-12">
+    <div class="col-md-10 col-md-offset-1">
+        <h2>@Umbraco.Field("projectsHeader")</h2>
+        <p>@Umbraco.Field("projecsDescription")</p>
+        @Html.Partial("ChildList")
+    </div>
+</div>

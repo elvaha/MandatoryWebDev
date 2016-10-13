@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e70ed8b90b8b2524")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4914661f93e1a4e4")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 
 // FILE: models.generated.cs
@@ -158,18 +158,27 @@ namespace Umbraco.Web.PublishedContentModels
 		/// quote1
 		///</summary>
 		[ImplementPropertyType("quote1")]
-		public IHtmlString Quote1
+		public string Quote1
 		{
-			get { return this.GetPropertyValue<IHtmlString>("quote1"); }
+			get { return this.GetPropertyValue<string>("quote1"); }
 		}
 
 		///<summary>
 		/// quote2
 		///</summary>
 		[ImplementPropertyType("quote2")]
-		public IHtmlString Quote2
+		public string Quote2
 		{
-			get { return this.GetPropertyValue<IHtmlString>("quote2"); }
+			get { return this.GetPropertyValue<string>("quote2"); }
+		}
+
+		///<summary>
+		/// quote3
+		///</summary>
+		[ImplementPropertyType("quote3")]
+		public string Quote3
+		{
+			get { return this.GetPropertyValue<string>("quote3"); }
 		}
 	}
 
@@ -264,9 +273,18 @@ namespace Umbraco.Web.PublishedContentModels
 		/// Article Picture
 		///</summary>
 		[ImplementPropertyType("articlePicture")]
-		public string ArticlePicture
+		public Umbraco.Web.Models.ImageCropDataSet ArticlePicture
 		{
-			get { return this.GetPropertyValue<string>("articlePicture"); }
+			get { return this.GetPropertyValue<Umbraco.Web.Models.ImageCropDataSet>("articlePicture"); }
+		}
+
+		///<summary>
+		/// preview
+		///</summary>
+		[ImplementPropertyType("preview")]
+		public string Preview
+		{
+			get { return this.GetPropertyValue<string>("preview"); }
 		}
 	}
 
@@ -384,6 +402,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// preview
+		///</summary>
+		[ImplementPropertyType("preview")]
+		public string Preview
+		{
+			get { return this.GetPropertyValue<string>("preview"); }
+		}
+
+		///<summary>
 		/// Project files
 		///</summary>
 		[ImplementPropertyType("projectFiles")]
@@ -490,21 +517,21 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Content
+		///</summary>
+		[ImplementPropertyType("content")]
+		public string Content
+		{
+			get { return this.GetPropertyValue<string>("content"); }
+		}
+
+		///<summary>
 		/// Date
 		///</summary>
 		[ImplementPropertyType("date")]
 		public DateTime Date
 		{
 			get { return this.GetPropertyValue<DateTime>("date"); }
-		}
-
-		///<summary>
-		/// content
-		///</summary>
-		[ImplementPropertyType("message")]
-		public string Message
-		{
-			get { return this.GetPropertyValue<string>("message"); }
 		}
 
 		///<summary>
@@ -558,6 +585,94 @@ namespace Umbraco.Web.PublishedContentModels
 		public string Title
 		{
 			get { return this.GetPropertyValue<string>("title"); }
+		}
+	}
+
+	/// <summary>ContactForm</summary>
+	[PublishedContentModel("contactForm")]
+	public partial class ContactForm : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "contactForm";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public ContactForm(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ContactForm, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Asker
+		///</summary>
+		[ImplementPropertyType("asker")]
+		public string Asker
+		{
+			get { return this.GetPropertyValue<string>("asker"); }
+		}
+
+		///<summary>
+		/// Email
+		///</summary>
+		[ImplementPropertyType("email")]
+		public object Email
+		{
+			get { return this.GetPropertyValue("email"); }
+		}
+
+		///<summary>
+		/// Message
+		///</summary>
+		[ImplementPropertyType("message")]
+		public string Message
+		{
+			get { return this.GetPropertyValue<string>("message"); }
+		}
+
+		///<summary>
+		/// Subject
+		///</summary>
+		[ImplementPropertyType("subject")]
+		public string Subject
+		{
+			get { return this.GetPropertyValue<string>("subject"); }
+		}
+	}
+
+	/// <summary>MemberView</summary>
+	[PublishedContentModel("memberView")]
+	public partial class MemberView : Master
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "memberView";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public MemberView(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<MemberView, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 

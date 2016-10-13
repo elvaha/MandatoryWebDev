@@ -4,26 +4,27 @@
 }
 
 <section class="col-md-12">
-    <h2>here goes header</h2>
+    <h2>@Umbraco.Field("header")</h2>
 
 </section>
 
 <section class="col-md-6 section">
     <div class="section-primary fade-color-blue">
+		@Umbraco.Field("frontpageText")
         <div class="quote-box">
-            <p class="quote"> - This is an awesome quote which should be replaced with some genereted text</p>
+            <p class="quote"> - @Umbraco.Field("quote1")</p>
         </div>
     </div>
 </section>
 <section class="col-md-6 section">
     <div class="col-md-12 section-right fade-color-orange">
         <div class="quote-box">
-            <p class="quote"> - This is an awesome quote which should be replaced with some genereted text</p>
+            <p class="quote"> - @Umbraco.Field("quote2")</p>
         </div>
     </div>
     <div class="col-md-12 section-right fade-color-green">
         <div class="quote-box">
-            <p class="quote"> - This is an awesome quote which should be replaced with some genereted text</p>
+            <p class="quote"> - @Umbraco.Field("quote3")</p>
         </div>
     </div>
 </section>

@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Core.Services;
+@using Umbraco.Core.Persistence;
+@{
+    var activeList = ApplicationContext.Current.Services.MemberService.GetMembersByGroup("Active");
+    var prospectList = ApplicationContext.Current.Services.MemberService.GetMembersByGroup("Prospect");
+}
+
+<h2>Active Members</h2>
+
+<div class="list-inline col-md-12">
+
+    @foreach (var member in activeList)
+    {
+        string fullPath = member.GetValue("Avatar").ToString();
+        string[] substrings = fullPath.Split(',');
+        string srcString = substrings[2];
+        string[] srcSubStrings = srcString.Split(':');
+        string srcPath = srcSubStrings[1].Replace("\"", "");
+        srcPath = srcPath.Replace("}", "");
+
+        <div class="list-group-item col-md-4">
+            <h4>Name: @member.Name</h4>
+            <img class="img-responsive" src="@srcPath" alt="No Avatar"/>
+            <h5>Email: @member.Email</h5>
+        </div>
+    }
+
+</div>
+
+
+<h2>Prospect Members</h2>
+
+<div class="list-inline col-md-12">
+
+    @foreach (var member in prospectList)
+    {
+        <div class="list-group-item col-md-4">
+            <p>@member.Name</p>
+            <p>@member.Email</p>
+        </div>
+    }
+
+</div>

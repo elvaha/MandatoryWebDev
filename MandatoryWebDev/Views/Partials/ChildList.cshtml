@@ -1,16 +1,29 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 
 
-@{ var selection = CurrentPage.Children.Where("Visible"); }
+@{ var selection = CurrentPage.Children.OrderBy("Id descending"); }
 
-@if (selection.Any())
-{
-    <ul>
-        @foreach (var item in selection)
-        {
-            <li>
-                <a href="@item.Url">@item.Name</a>
-            </li>
-        }
-    </ul>
-}
+<div class="col-md-12">
+    @if (selection.Any())
+    {
+
+        <div class="list-group">
+            @foreach (var item in selection)
+            {
+                <a class="list-group-item article-item" href="@item.Url">
+                    <h2>@item.Name</h2>
+                    <h6>@item.UpdateDate.Date</h6>
+                    @if (item.DocumentTypeAlias == "projectsItem")
+                    {
+                        <div class="status-view text-info">
+                            <strong>Status: </strong> @item.projectStatus
+                        </div>
+                    }
+                    <h4>@item.preview</h4>
+                </a>
+            }
+        </div>
+
+    }
+
+</div>

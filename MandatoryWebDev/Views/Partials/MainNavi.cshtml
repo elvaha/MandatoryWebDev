@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Aarhus Web Dev</a>
+            <a class="navbar-brand" href="/">Aarhus Web Dev</a>
         </div>
         @{ var selection = CurrentPage.Site().Children.Where("Visible");
         }
@@ -32,17 +32,21 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Completed Projects<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @{ var projects = CurrentPage.Site().Children("projectMain");
                         }
                         @foreach (var page in projects)
                         {
+
                             foreach (var item in page.Children.Where("Visible"))
                             {
-                                <li>
-                                    <a href="@item.Url">@item.Name</a>
-                                </li>
+                                if (item.projectStatus == "Completed")
+                                {
+                                    <li>
+                                        <a href="@item.Url">@item.Name</a>
+                                    </li>
+                                }
                             }
                         }
                     </ul>
@@ -50,10 +54,7 @@
                 @if (loginStatusModel.IsLoggedIn)
                 {
                     <li>
-                        @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
-                        {
-                            <a href="">Logout</a>
-                        }
+                        <a href='@Url.Action("Logout", "LoginSurface")'>Logout</a>
                     </li>
                 }
                 else
